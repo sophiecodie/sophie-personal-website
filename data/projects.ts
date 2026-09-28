@@ -58,7 +58,13 @@ export const projects: Project[] = [
       outcomes: [
         "A comprehensive thesis on using AI to translate complex scientific findings into accessible educational tools",
       ],
-      links: [], // TODO: demo / repo / thesis
+      links: [
+        {
+          label: "Thesis (medRxiv)",
+          href: "https://www.medrxiv.org/content/10.1101/2025.09.18.25335721v1",
+        },
+        // TODO: demo / repo
+      ],
     },
   },
   {
