@@ -3,19 +3,22 @@
 import { motion } from "framer-motion";
 import { useActiveSection, SectionId } from "@/lib/useActiveSection";
 
-const TABS: { id: SectionId; label: string[] }[] = [
+// `short` is used in the mobile bottom bar, where five full labels don't fit
+const TABS: { id: SectionId; label: string[]; short?: string }[] = [
   { id: "about", label: ["ABOUT"] },
   { id: "experience", label: ["EXPERIENCE"] },
-  { id: "outside", label: ["OUTSIDE", "CLASS"] },
-  { id: "contact", label: ["RESUME", "CONTACT"] },
+  { id: "skills", label: ["SKILLS"] },
+  { id: "outside", label: ["OUTSIDE", "CLASS"], short: "OUTSIDE" },
+  { id: "contact", label: ["RESUME", "CONTACT"], short: "CONTACT" },
 ];
 
 // each section's background color, so the active tab can invert against it.
-// Selected Works sits between "about" and "experience" but isn't tracked —
-// it's a homepage feature, not its own nav destination.
+// Selected Works is a panel inside the "about" hero, not its own nav
+// destination.
 const SECTION_BG: Record<SectionId, "yellow" | "blue"> = {
   about: "yellow",
   experience: "yellow",
+  skills: "blue",
   outside: "blue",
   contact: "yellow",
 };
@@ -68,7 +71,7 @@ export default function SideTabs() {
       </nav>
 
       {/* Mobile: compact bottom bar */}
-      <div className="fixed inset-x-0 bottom-0 z-50 flex justify-around border-t border-cream/15 bg-navy/95 py-3 backdrop-blur md:hidden">
+      <div className="fixed inset-x-0 bottom-0 z-50 flex justify-around gap-2 border-t border-cream/15 bg-navy/95 px-2 py-3 backdrop-blur md:hidden">
         {TABS.map((tab) => {
           const isActive = active === tab.id;
           return (
@@ -76,11 +79,11 @@ export default function SideTabs() {
               key={tab.id}
               onClick={() => scrollToSection(tab.id)}
               aria-current={isActive ? "true" : undefined}
-              className={`font-pixel text-sm tracking-wide transition-colors duration-200 ${
+              className={`font-pixel text-xs uppercase transition-colors duration-200 ${
                 isActive ? "text-brand-yellow" : "text-cream/50"
               }`}
             >
-              {tab.label.join(" ")}
+              {tab.short ?? tab.label.join(" ")}
             </button>
           );
         })}

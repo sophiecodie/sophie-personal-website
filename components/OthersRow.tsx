@@ -15,7 +15,7 @@ export default function OthersRow() {
         className="group flex w-full items-center justify-between text-left"
       >
         <div className="flex items-baseline gap-4">
-          <span className="font-pixel text-base text-cream/50">03</span>
+          <span className="font-pixel text-base text-cream/50">04</span>
           <h3 className="text-2xl font-medium sm:text-3xl">Others</h3>
         </div>
         <motion.span

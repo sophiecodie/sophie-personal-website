@@ -25,3 +25,16 @@ html {
     scroll-behavior: auto !important;
   }
 }
+
+/* scroll containers that show their own position indicator */
+.no-scrollbar {
+  scrollbar-width: none;
+}
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+
+/* pixel-art assets: keep hard pixel edges instead of smoothing them */
+.pixel-art {
+  image-rendering: pixelated;
+}

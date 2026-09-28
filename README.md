@@ -22,23 +22,25 @@ vercel
 
 ## What changed this iteration
 
-This pass was about visual design and interaction, not more copy. Three
-big structural changes:
-
-1. **Fonts actually changed.** Plus Jakarta Sans (headlines/body — rounder,
-   friendlier, visibly different from before) + **VT323** (genuine
-   pixel/terminal font) for every small interface detail: numbers, nav
-   labels, tags, dates, CTAs. Never for paragraphs. Utility class is
-   `font-pixel` (see `tailwind.config.ts` / `app/layout.tsx`).
-2. **Selected Works is back on the homepage**, directly under the hero —
-   two large cards (`data/projects.ts`, `components/ProjectCard.tsx`),
-   each just title + descriptor + one sentence + a big visual + a
-   persistent "EXPLORE ↗". Full detail lives behind the click, at
-   `/work/neurobiome` and `/work/siim` (still placeholder shells).
-3. **Experience is now click-to-expand widgets**, not paragraph cards.
-   Collapsed, each entry shows only enough to make someone want to click;
-   clicking reveals tags + full description + CTA inline (no modal, no
-   navigation) via a Framer Motion height animation.
+1. **One pixel font everywhere.** Pixelify Sans replaces both Plus Jakarta
+   Sans and VT323 — headings, nav, cards, body. Hierarchy comes from size,
+   weight and uppercase. `font-sans` and `font-pixel` both point at it
+   (`app/layout.tsx`, `tailwind.config.ts`).
+2. **Selected Works is a sliding tray in the hero** (`components/SelectedWorks.tsx`).
+   It's a native scroll container with scroll-snap — vertical on desktop,
+   horizontal swipe on phones — plus click-and-drag for mouse users. Each
+   widget (`components/ProjectCard.tsx`) shows only number, title,
+   descriptor, a visual and `OPEN ↗`.
+3. **Project detail pages** — one dynamic route, `app/work/[slug]/page.tsx`
+   (`/work/neurobiome`, `/work/agent00hl7`, `/work/dreamteam`), rendered by
+   `components/ProjectDetail.tsx` from `detail` in `data/projects.ts`.
+   Add a project to that array and its page exists. `/work/siim` redirects
+   to `/work/agent00hl7` (`next.config.mjs`). Empty lists (process, links, …) are hidden;
+   empty `screenshots` shows placeholder frames.
+4. **Experience cards are cream paper** (`#FFFBEA`, thin border, no
+   shadow). Collapsed: organization, role, dates, a one-line `descriptor`
+   and (feature card) one tag. Click expands inline. Hover lifts the card,
+   nudges the title and arrow, and fades in `VIEW`.
 
 ## Experience widget system
 
@@ -53,7 +55,7 @@ collapsed layout. Same 5, fixed order:
 | 04 | MD.ai | `compact` | single horizontal line |
 | 05 | Believers | `stat` | large year treatment |
 
-All five share the same background tint, padding scale, and border-radius
+All five share the same cream fill, border, padding scale, and border-radius
 (`components/ExperienceCard.tsx` → `spanClass()`), so the variety in size
 and composition still reads as one system rather than five different
 components. To add a 6th variant, add a case to both `spanClass()` and the
@@ -78,12 +80,16 @@ paired rows, on purpose (not a dense bento grid).
 | What | File |
 |---|---|
 | Hero copy | `components/Hero.tsx` |
-| Selected Works (2 cards) | `data/projects.ts` |
+| Selected Works (tray widgets + detail pages) | `data/projects.ts` |
 | Experience (5 widgets, order + variant + content) | `data/experience.ts` |
-| Outside of Class | `data/interests.ts` |
+| Skills (groups, larger "major" tags, hover notes) | `data/skills.ts` |
+| Outside of Class (Dance / Reading / Writing rows) | `data/interests.ts` |
+| Bookshelf (`/reading`) | `data/books.ts` — optional cover, rating, quote, review, dateRead, tags |
+| Writing (`/writing`) | `data/writing.ts` — shows "portfolio coming soon." while empty |
+| Images | `lib/images.ts` (imports from `/imgs`) |
 | Contact links + resume | `components/Contact.tsx` |
 | Colors | `tailwind.config.ts` |
-| Fonts | `app/layout.tsx` (imports) + `tailwind.config.ts` (`font-sans` / `font-pixel`) |
+| Font | `app/layout.tsx` (Pixelify Sans import) + `tailwind.config.ts` |
 
 ## Judgment calls made this revision
 
@@ -101,5 +107,7 @@ paired rows, on purpose (not a dense bento grid).
 
 ## Still placeholder
 
-- All "image" boxes — labeled `div`s, swap for real photos/screenshots
-- `/work/neurobiome`, `/work/siim`, `/dance`, `/reading-writing` — shells only
+- Images still missing: Agent00HL7 widget, Dance row — add to `/imgs`, then `lib/images.ts`
+- `/work/*` — screenshots (all), Neurobiome process + links: TODO in `data/projects.ts`
+- Experience links — RSNA abstract, MD.ai paper + video: empty `href`s in `data/experience.ts` (hidden until filled)
+- `/dance` — shell only (`/reading-writing` now redirects to `/reading`)

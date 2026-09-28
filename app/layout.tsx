@@ -1,21 +1,13 @@
 import type { Metadata } from "next";
-import { Plus_Jakarta_Sans, VT323 } from "next/font/google";
+import { Pixelify_Sans } from "next/font/google";
 import "./globals.css";
 
-// friendly, rounded, visibly different from a default sans — carries
-// headlines + body copy
-const jakarta = Plus_Jakarta_Sans({
-  subsets: ["latin"],
-  variable: "--font-sans",
-  weight: ["400", "500", "600", "700"],
-});
-
-// genuine pixel/retro-digital accent — used only for small interface
-// details: numbers, nav labels, metadata, CTAs. Never for paragraphs.
-const vt323 = VT323({
+// one pixel typeface for the whole site — headings, nav, cards and body.
+// Hierarchy comes from size, weight and capitalization, not a second font.
+const pixelify = Pixelify_Sans({
   subsets: ["latin"],
   variable: "--font-pixel",
-  weight: ["400"],
+  weight: ["400", "500", "600", "700"],
 });
 
 export const metadata: Metadata = {
@@ -30,7 +22,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en" className={`${jakarta.variable} ${vt323.variable}`}>
+    <html lang="en" className={pixelify.variable}>
       <body className="bg-navy font-sans antialiased">{children}</body>
     </html>
   );

@@ -7,6 +7,7 @@ import {
   useSpring,
   useTransform,
 } from "framer-motion";
+import SelectedWorks from "./SelectedWorks";
 
 const container = {
   hidden: {},
@@ -50,7 +51,7 @@ export default function Hero() {
       id="about"
       ref={ref}
       onMouseMove={handleMouseMove}
-      className="relative flex min-h-screen flex-col justify-center overflow-hidden bg-brand-yellow px-6 py-24 text-brand-blue md:px-20 lg:pl-32"
+      className="relative flex min-h-screen flex-col justify-center gap-14 overflow-hidden bg-brand-yellow px-6 py-24 text-brand-blue md:px-20 lg:flex-row lg:items-center lg:gap-12 lg:pl-32 lg:pr-12 xl:pr-16"
     >
       {/* abstract shapes — no illustration needed, just soft geometry */}
       <motion.div
@@ -68,7 +69,7 @@ export default function Hero() {
         variants={container}
         initial="hidden"
         animate="show"
-        className="relative max-w-xl"
+        className="relative max-w-xl lg:flex-1"
       >
         <motion.p
           variants={item}
@@ -93,6 +94,13 @@ export default function Hero() {
           people.
         </motion.p>
       </motion.div>
+
+      {/* Selected Works lives inside the hero as a side panel, not its own
+          section. The blue circle above sits behind it and shows through
+          the panel's blur. */}
+      <div className="relative w-full lg:w-[36vw] lg:min-w-[380px] lg:max-w-[560px] lg:shrink-0">
+        <SelectedWorks />
+      </div>
 
       <motion.div
         initial={{ opacity: 0 }}

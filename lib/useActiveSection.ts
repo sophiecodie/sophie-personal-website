@@ -2,17 +2,18 @@
 
 import { useEffect, useState } from "react";
 
-export type SectionId = "about" | "experience" | "outside" | "contact";
+export type SectionId = "about" | "experience" | "skills" | "outside" | "contact";
 
 const SECTION_IDS: SectionId[] = [
   "about",
   "experience",
+  "skills",
   "outside",
   "contact",
 ];
 
 /**
- * Watches the four page sections and reports which one is currently
+ * Watches the page sections and reports which one is currently
  * centered in the viewport, so SideTabs.tsx can highlight the right tab
  * as the user scrolls (no click required).
  */
