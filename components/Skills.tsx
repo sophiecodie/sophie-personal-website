@@ -1,7 +1,9 @@
 "use client";
 
+import Image from "next/image";
 import { motion } from "framer-motion";
 import { skillGroups, Skill } from "@/data/skills";
+import { images } from "@/lib/images";
 
 function SkillTag({ skill }: { skill: Skill }) {
   return (
@@ -36,14 +38,37 @@ export default function Skills() {
   return (
     <section
       id="skills"
-      className="overflow-hidden bg-brand-blue px-6 py-24 text-cream md:px-20 lg:pl-32"
+      className="relative overflow-hidden bg-brand-blue px-6 py-24 text-cream md:px-20 lg:pl-32"
     >
+      {/* faint drifting clouds behind the tags, same treatment as Outside of Class */}
+      <Image
+        src={images.cloud}
+        alt=""
+        aria-hidden
+        sizes="360px"
+        className="pixel-art pointer-events-none absolute right-6 top-16 w-52 animate-drift opacity-25 sm:right-24 sm:w-[360px]"
+      />
+      <Image
+        src={images.cloud}
+        alt=""
+        aria-hidden
+        sizes="220px"
+        className="pixel-art pointer-events-none absolute right-[16%] top-[53%] w-32 animate-drift-slow opacity-15 sm:w-48"
+      />
+      <Image
+        src={images.cloud}
+        alt=""
+        aria-hidden
+        sizes="260px"
+        className="pixel-art pointer-events-none absolute -right-12 bottom-10 w-40 animate-drift-slow opacity-20 sm:w-64"
+      />
+
       <motion.div
         initial={{ opacity: 0, y: 20 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true, amount: 0.4 }}
         transition={{ duration: 0.5 }}
-        className="mb-14"
+        className="relative mb-14"
       >
         <h2 className="text-4xl font-medium sm:text-5xl">Skills</h2>
         <p className="mt-2 max-w-xl text-brand-yellow/80">
@@ -56,7 +81,7 @@ export default function Skills() {
         </p>
       </motion.div>
 
-      <div className="grid gap-x-16 gap-y-10 md:grid-cols-2">
+      <div className="relative grid gap-x-16 gap-y-10 md:grid-cols-2">
         {skillGroups.map((group, i) => (
           <motion.div
             key={group.title}
