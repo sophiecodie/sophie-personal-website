@@ -1,3 +1,4 @@
+import Image from "next/image";
 import { Book } from "@/data/books";
 
 // Covers cycle through the site palette so the shelf reads as a set.
@@ -17,6 +18,24 @@ const HEIGHTS = ["h-[210px] sm:h-[250px]", "h-[196px] sm:h-[232px]", "h-[204px] 
 export default function BookWidget({ book, index }: { book: Book; index: number }) {
   const c = COVERS[index % COVERS.length];
   const h = HEIGHTS[index % HEIGHTS.length];
+
+  if (book.cover) {
+    return (
+      <div
+        tabIndex={0}
+        aria-label={`${book.title} by ${book.author}`}
+        className={`group relative ${h} w-full max-w-[170px] overflow-hidden border-2 border-navy bg-navy shadow-[4px_0_0_0_#12163A] outline-none transition-[transform,filter] duration-300 ease-out hover:-translate-y-3 hover:brightness-110 focus-visible:-translate-y-3 focus-visible:brightness-110`}
+      >
+        <Image
+          src={book.cover}
+          alt={`Cover of ${book.title} by ${book.author}`}
+          fill
+          sizes="(min-width: 640px) 170px, 30vw"
+          className="object-cover"
+        />
+      </div>
+    );
+  }
 
   return (
     <div
