@@ -21,16 +21,24 @@ export default function ChoreoVideoCard({ video, number }: { video: ChoreoVideo;
 
   return (
     <figure className={`group w-full ${portrait ? "max-w-[280px]" : "max-w-[420px]"}`}>
-      <figcaption className="mb-3 flex items-center gap-3">
-        <span className="text-sm text-brand-blue/60">{number}</span>
-        <span className="text-lg font-semibold uppercase tracking-wide">{video.label}</span>
-        <PixelStar
-          size="h-1 w-1"
-          className="transition-transform duration-300 group-hover:rotate-45 group-hover:scale-125"
-        />
+      <figcaption className="mb-3">
+        <span className="flex items-center gap-3">
+          <span className="text-sm text-brand-blue/60">{number}</span>
+          <span className="text-lg font-semibold uppercase tracking-wide">{video.label}</span>
+          <PixelStar
+            size="h-1 w-1"
+            className="transition-transform duration-300 group-hover:rotate-45 group-hover:scale-125"
+          />
+        </span>
+        <span className="mt-1 block text-sm text-brand-blue/70">choreo by {video.choreographer}</span>
       </figcaption>
 
-      <div className="relative overflow-hidden border-2 border-navy bg-navy shadow-[4px_4px_0_0_#12163A] transition-[transform,border-color] duration-300 ease-out group-hover:-translate-y-1.5 group-hover:border-brand-blue">
+      {/* lifts on hover only before playing, so the controls stay put while you use them */}
+      <div
+        className={`relative overflow-hidden border-2 border-navy bg-navy shadow-[4px_4px_0_0_#12163A] transition-[transform,border-color] duration-300 ease-out group-hover:border-brand-blue ${
+          started ? "" : "group-hover:-translate-y-1.5"
+        }`}
+      >
         <video
           ref={ref}
           src={video.src}
@@ -40,6 +48,9 @@ export default function ChoreoVideoCard({ video, number }: { video: ChoreoVideo;
           preload="none"
           playsInline
           controls={started}
+          // hide the Download option in the player menu and the right-click "Save video as"
+          controlsList="nodownload"
+          onContextMenu={(e) => e.preventDefault()}
           onPlay={(e) => {
             setStarted(true);
             document.querySelectorAll("video").forEach((v) => v !== e.currentTarget && v.pause());
@@ -50,7 +61,7 @@ export default function ChoreoVideoCard({ video, number }: { video: ChoreoVideo;
           <button
             type="button"
             onClick={play}
-            aria-label={`Play ${video.label}`}
+            aria-label={`Play ${video.label}, choreography by ${video.choreographer}`}
             className="absolute inset-0 flex items-end justify-start p-3"
           >
             <span className="flex items-center gap-2 border-2 border-navy bg-brand-yellow px-3 py-1 text-sm uppercase tracking-wider text-navy">

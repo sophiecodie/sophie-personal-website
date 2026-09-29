@@ -10,7 +10,6 @@ const EMAIL = "sophie59595@gmail.com";
 // replace these with your real links
 const links = [
   { label: "LinkedIn", href: "https://www.linkedin.com/in/sophie-suzuki-shih-724371316/" },
-  { label: "Website Repo - GitHub", href: "https://github.com/sophiecodie/sophie-personal-website" },
 ];
 
 export default function Contact() {

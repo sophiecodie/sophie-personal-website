@@ -69,17 +69,19 @@ export default function DancePage() {
                 {choreo.map((video, i) => {
                   const right = i % 2 === 1;
                   return (
-                    // each video tucks up beside the previous one on the opposite side
+                    // each video tucks up beside the previous one on the opposite side.
+                    // The rows overlap, so only the card itself takes clicks — otherwise
+                    // this row would cover the controls of the video above it.
                     <li
                       key={video.src}
-                      className={`relative flex ${right ? "md:justify-end" : ""} ${i > 0 ? "mt-14 md:-mt-24" : ""}`}
+                      className={`pointer-events-none relative flex ${right ? "md:justify-end" : ""} ${i > 0 ? "mt-14 md:-mt-24" : ""}`}
                     >
                       <span
                         aria-hidden
                         className="absolute left-1/2 top-1.5 hidden h-3 w-3 -translate-x-1/2 border-2 border-navy bg-brand-yellow md:block"
                       />
                       <Reveal
-                        className={`flex w-full md:w-[calc(50%-2.5rem)] ${right ? "" : "md:justify-end"}`}
+                        className={`pointer-events-auto flex w-full md:w-[calc(50%-2.5rem)] ${right ? "" : "md:justify-end"}`}
                       >
                         <ChoreoVideoCard video={video} number={String(i + 1).padStart(2, "0")} />
                       </Reveal>
