@@ -1,5 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
+import BackLink from "@/components/BackLink";
 import { projects, projectHref, Project } from "@/data/projects";
 
 function Section({
@@ -38,12 +39,7 @@ export default function ProjectDetail({ project }: { project: Project }) {
   return (
     <main className="min-h-screen bg-brand-blue px-6 py-16 text-cream md:px-20 md:py-24">
       <div className="mx-auto max-w-4xl">
-        <Link
-          href="/#selected-works"
-          className="text-sm uppercase tracking-wider text-cream/60 transition-colors duration-200 hover:text-brand-yellow"
-        >
-          ← back
-        </Link>
+        <BackLink href="/#selected-works" className="text-sm uppercase tracking-wider text-cream/60 transition-colors duration-200 hover:text-brand-yellow" />
 
         <header className="mt-10 pb-10">
           <div className="flex flex-wrap items-baseline gap-x-4 gap-y-1 text-sm uppercase tracking-wider text-brand-yellow/80">

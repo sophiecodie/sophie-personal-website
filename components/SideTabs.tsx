@@ -9,7 +9,7 @@ const TABS: { id: SectionId; label: string[]; short?: string }[] = [
   { id: "experience", label: ["EXPERIENCE"] },
   { id: "skills", label: ["SKILLS"] },
   { id: "outside", label: ["OUTSIDE", "CLASS"], short: "OUTSIDE" },
-  { id: "contact", label: ["RESUME", "CONTACT"], short: "CONTACT" },
+  { id: "contact", label: ["CONTACT"], short: "CONTACT" },
 ];
 
 // each section's background color, so the active tab can invert against it.

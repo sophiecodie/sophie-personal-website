@@ -1,5 +1,5 @@
 import Image from "next/image";
-import Link from "next/link";
+import BackLink from "@/components/BackLink";
 import { writing, WRITING_KIND_LABELS, WritingKind } from "@/data/writing";
 import { images } from "@/lib/images";
 
@@ -13,12 +13,7 @@ export default function WritingPage() {
   return (
     <main className="min-h-screen bg-brand-blue px-6 py-16 text-cream md:px-20 md:py-24">
       <div className="mx-auto max-w-3xl">
-        <Link
-          href="/#outside"
-          className="text-sm uppercase tracking-wider text-cream/60 transition-colors duration-200 hover:text-brand-yellow"
-        >
-          ← back
-        </Link>
+        <BackLink href="/#outside" className="text-sm uppercase tracking-wider text-cream/60 transition-colors duration-200 hover:text-brand-yellow" />
 
         <h1 className="mt-10 text-5xl font-bold uppercase leading-none tracking-wide sm:text-7xl">
           Writing
@@ -49,6 +44,8 @@ export default function WritingPage() {
                       <li key={w.title}>
                         <a
                           href={w.href}
+                          target="_blank"
+                          rel="noopener noreferrer"
                           className="group flex items-baseline justify-between gap-4 py-4"
                         >
                           <span className="text-lg transition-transform duration-300 group-hover:translate-x-1 sm:text-xl">

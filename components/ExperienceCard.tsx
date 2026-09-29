@@ -1,5 +1,6 @@
 "use client";
 
+import Link from "next/link";
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import Image from "next/image";
@@ -73,18 +74,19 @@ export default function ExperienceCard({
               {links.length > 0 && (
                 <div className="mt-5 flex flex-wrap gap-x-6 gap-y-2">
                   {links.map((l) => {
-                    const external = l.href.startsWith("http");
+                    // in-site pages navigate without a reload; everything else opens a new tab
+                    const Anchor = l.href.startsWith("/") ? Link : "a";
                     return (
-                      <a
+                      <Anchor
                         key={l.label}
                         href={l.href}
                         onClick={(e) => e.stopPropagation()}
-                        {...(external ? { target: "_blank", rel: "noopener noreferrer" } : {})}
+                        {...(l.href.startsWith("/") ? {} : { target: "_blank", rel: "noopener noreferrer" })}
                         className="group/cta inline-flex items-center gap-2 text-sm uppercase tracking-wider text-brand-blue"
                       >
                         <span className="border-b border-brand-blue/40">{l.label}</span>
                         <span className="transition-transform duration-300 group-hover/cta:translate-x-1">↗</span>
-                      </a>
+                      </Anchor>
                     );
                   })}
                 </div>

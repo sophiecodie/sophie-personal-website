@@ -4,10 +4,12 @@ import Experience from "@/components/Experience";
 import Skills from "@/components/Skills";
 import OutsideClass from "@/components/OutsideClass";
 import Contact from "@/components/Contact";
+import HomeScrollMemory from "@/components/HomeScrollMemory";
 
 export default function Home() {
   return (
     <>
+      <HomeScrollMemory />
       <SideTabs />
       <main className="pb-16 md:pb-0">
         <Hero />

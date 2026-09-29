@@ -1,5 +1,5 @@
 import Image from "next/image";
-import Link from "next/link";
+import BackLink from "@/components/BackLink";
 import BookWidget from "@/components/BookWidget";
 import { books } from "@/data/books";
 import { images } from "@/lib/images";
@@ -24,12 +24,7 @@ export default function ReadingPage() {
       />
 
       <div className="relative mx-auto max-w-3xl">
-        <Link
-          href="/#outside"
-          className="text-sm uppercase tracking-wider text-brand-blue/60 transition-colors duration-200 hover:text-navy"
-        >
-          ← back
-        </Link>
+        <BackLink href="/#outside" className="text-sm uppercase tracking-wider text-brand-blue/60 transition-colors duration-200 hover:text-navy" />
 
         <header className="mt-10 flex flex-col gap-6 sm:flex-row sm:items-end sm:justify-between">
           <div>
@@ -37,6 +32,7 @@ export default function ReadingPage() {
             <h1 className="mt-2 text-5xl font-bold uppercase leading-none tracking-wide sm:text-6xl">
               My Bookshelf
             </h1>
+            <p className="mt-3 text-lg text-brand-blue/70 sm:text-xl">some favorites</p>
           </div>
           <Image
             src={images.shelf}

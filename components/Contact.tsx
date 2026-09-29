@@ -1,12 +1,14 @@
 "use client";
 
+import { useState } from "react";
 import Image from "next/image";
 import { motion } from "framer-motion";
 import { images } from "@/lib/images";
 
+const EMAIL = "sophie59595@gmail.com";
+
 // replace these with your real links
 const links = [
-  { label: "Email", href: "mailto:sophie59595@gmail.com" },
   { label: "LinkedIn", href: "https://www.linkedin.com/in/sophie-suzuki-shih-724371316/" },
   { label: "Website Repo - GitHub", href: "https://github.com/sophiecodie/sophie-personal-website" },
 ];
@@ -43,10 +45,12 @@ export default function Contact() {
         </p>
 
         <div className="mt-10 flex flex-col gap-3 font-pixel text-sm">
+          <CopyEmail />
           {links.map((link) => (
             <a
               key={link.label}
               href={link.href}
+              {...(link.href.startsWith("http") ? { target: "_blank", rel: "noopener noreferrer" } : {})}
               className="w-fit border-b border-brand-blue/30 pb-1 transition-colors duration-200 hover:border-navy hover:text-navy"
             >
               {link.label}
@@ -57,6 +61,8 @@ export default function Contact() {
         {/* drop resume.pdf into /public and this just works */}
         <a
           href="/resume.pdf"
+          target="_blank"
+          rel="noopener noreferrer"
           className="group mt-10 inline-flex w-fit items-center gap-2 rounded-full bg-brand-blue px-6 py-3 font-pixel text-sm text-brand-yellow transition-transform duration-300 hover:scale-[1.03]"
         >
           Download resume
@@ -71,5 +77,43 @@ export default function Contact() {
         <p className="mt-1">Different pursuits, same curiosity.</p>
       </footer>
     </section>
+  );
+}
+
+/** Shows the email address; clicking copies it and briefly confirms. */
+function CopyEmail() {
+  const [copied, setCopied] = useState(false);
+
+  async function copy() {
+    try {
+      await navigator.clipboard.writeText(EMAIL);
+    } catch {
+      // older browsers / non-https: fall back to a hidden textarea
+      const t = document.createElement("textarea");
+      t.value = EMAIL;
+      document.body.appendChild(t);
+      t.select();
+      document.execCommand("copy");
+      t.remove();
+    }
+    setCopied(true);
+    setTimeout(() => setCopied(false), 1800);
+  }
+
+  return (
+    <button
+      type="button"
+      onClick={copy}
+      aria-label={`Copy email address ${EMAIL}`}
+      className="group flex w-fit items-center gap-3 border-b border-brand-blue/30 pb-1 text-left transition-colors duration-200 hover:border-navy hover:text-navy"
+    >
+      {EMAIL}
+      <span className="text-xs uppercase tracking-wider text-brand-blue/60 transition-colors duration-200 group-hover:text-navy">
+        {copied ? "copied!" : "copy"}
+      </span>
+      <span aria-live="polite" className="sr-only">
+        {copied ? "Email copied to clipboard" : ""}
+      </span>
+    </button>
   );
 }
