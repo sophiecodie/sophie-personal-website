@@ -1,59 +1,28 @@
-"use client";
+import Link from "next/link";
+import { othersSections } from "@/data/others";
 
-import { useState } from "react";
-import { motion, AnimatePresence } from "framer-motion";
-import { otherInterests } from "@/data/interests";
-
+/** The smaller fourth Outside of Class row; opens the /others page. */
 export default function OthersRow() {
-  const [open, setOpen] = useState(false);
-
   return (
-    <div className="border-t border-cream/15 pt-8">
-      <button
-        onClick={() => setOpen((v) => !v)}
-        aria-expanded={open}
-        className="group flex w-full items-center justify-between text-left"
-      >
+    <Link href="/others" className="group block border-t border-cream/15 pt-8">
+      <div className="flex w-full items-center justify-between">
         <div className="flex items-baseline gap-4">
           <span className="font-pixel text-base text-cream/50">04</span>
-          <h3 className="text-2xl font-medium sm:text-3xl">Others</h3>
+          <h3 className="text-2xl font-medium transition-transform duration-300 group-hover:translate-x-2 sm:text-3xl">
+            Others
+          </h3>
         </div>
-        <motion.span
-          animate={{ rotate: open ? 45 : 0 }}
-          transition={{ duration: 0.25 }}
-          className="font-pixel text-2xl text-brand-yellow"
-        >
-          +
-        </motion.span>
-      </button>
+        <span className="flex shrink-0 items-center gap-2 uppercase tracking-wider text-brand-yellow">
+          <span className="hidden text-sm sm:inline">Explore</span>
+          <span className="text-2xl transition-transform duration-300 group-hover:-translate-y-0.5 group-hover:translate-x-1">
+            ↗
+          </span>
+        </span>
+      </div>
 
       <p className="mt-3 font-pixel text-base text-cream/50">
-        {otherInterests.map((o) => o.title).join(" · ")}
+        {othersSections.map((s) => s.title).join(" · ")}
       </p>
-
-      <AnimatePresence initial={false}>
-        {open && (
-          <motion.div
-            key="others-detail"
-            initial={{ height: 0, opacity: 0 }}
-            animate={{ height: "auto", opacity: 1 }}
-            exit={{ height: 0, opacity: 0 }}
-            transition={{ duration: 0.3, ease: [0.22, 1, 0.36, 1] }}
-            className="overflow-hidden"
-          >
-            <div className="mt-5 grid gap-5 sm:grid-cols-3">
-              {otherInterests.map((o) => (
-                <div key={o.title}>
-                  <p className="font-pixel text-sm text-brand-yellow/80">
-                    {o.title}
-                  </p>
-                  <p className="mt-1 text-sm text-cream/70">{o.blurb}</p>
-                </div>
-              ))}
-            </div>
-          </motion.div>
-        )}
-      </AnimatePresence>
-    </div>
+    </Link>
   );
 }

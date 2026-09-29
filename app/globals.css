@@ -26,6 +26,19 @@ html {
   }
 }
 
+/* pixel dotted path for the Dance journey — square dots that slowly march
+   downward. Color comes from the element's text color. */
+.path-dots {
+  background-image: linear-gradient(to bottom, currentColor 50%, transparent 50%);
+  background-size: 100% 14px;
+  animation: path-march 2.4s linear infinite;
+}
+@keyframes path-march {
+  to {
+    background-position: 0 14px;
+  }
+}
+
 /* scroll containers that show their own position indicator */
 .no-scrollbar {
   scrollbar-width: none;

@@ -1,5 +1,9 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
+  images: {
+    // YouTube thumbnails for the Dance page performance cards
+    remotePatterns: [{ protocol: "https", hostname: "i.ytimg.com", pathname: "/vi/**" }],
+  },
   async redirects() {
     return [
       // the SIIM project page was renamed to the project's real name

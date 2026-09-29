@@ -32,23 +32,3 @@ export const primaryInterests: Interest[] = [
     image: images.quill,
   },
 ];
-
-export type OtherInterest = {
-  title: string;
-  blurb: string;
-};
-
-export const otherInterests: OtherInterest[] = [
-  {
-    title: "Tennis",
-    blurb: "Patience, consistency, and how to reset when something isn't working.",
-  },
-  {
-    title: "Teaching",
-    blurb: "Helping kids turn strange ideas into things that actually run.",
-  },
-  {
-    title: "Mentoring",
-    blurb: "Big Sib mentoring and other work with younger students.",
-  },
-];

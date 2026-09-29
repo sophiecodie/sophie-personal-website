@@ -29,6 +29,20 @@ export default function WritingPage() {
               className="pixel-art w-36 sm:w-48"
             />
             <p className="text-3xl text-brand-yellow sm:text-5xl">portfolio coming soon.</p>
+            <a
+              href="https://www.dukechronicle.com"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="group flex flex-col items-center gap-2 border-2 border-cream/25 px-6 py-4 transition-[transform,border-color] duration-300 hover:-translate-y-1 hover:border-brand-yellow"
+            >
+              <span className="text-xs uppercase tracking-wider text-cream/50">currently writing for</span>
+              <span className="flex items-center gap-2 text-xl uppercase tracking-wide sm:text-2xl">
+                The Duke Chronicle
+                <span className="text-brand-yellow transition-transform duration-300 group-hover:-translate-y-0.5 group-hover:translate-x-1">
+                  ↗
+                </span>
+              </span>
+            </a>
           </div>
         ) : (
           <div className="mt-16 space-y-12">
