@@ -8,3 +8,4 @@ next-env.d.ts
 
 # original media drops — the site uses the converted copies in /imgs and /public/media
 /public/website content/
+/public/travels/

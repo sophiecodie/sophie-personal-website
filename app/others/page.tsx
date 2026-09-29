@@ -1,6 +1,7 @@
 import Image from "next/image";
 import BackLink from "@/components/BackLink";
 import Polaroid from "@/components/Polaroid";
+import TravelMap from "@/components/TravelMap";
 import { othersSections } from "@/data/others";
 import { images } from "@/lib/images";
 
@@ -47,6 +48,11 @@ export default function OthersPage() {
                     <span aria-hidden className="h-2 w-2 bg-brand-yellow" />
                     {section.title}
                   </h2>
+                  {section.subtitle && (
+                    <p className="mt-1 pl-5 text-sm uppercase tracking-wider text-cream/60">
+                      {section.subtitle}
+                    </p>
+                  )}
                   <p className="mt-4 max-w-sm text-cream/75">{section.blurb}</p>
                 </div>
 
@@ -59,8 +65,12 @@ export default function OthersPage() {
                       alt={photo.alt}
                       label={section.title}
                       rotate={TILTS[(s * 2 + i) % TILTS.length] * (flip ? -1 : 1)}
-                      sizes="(min-width: 768px) 340px, 80vw"
-                      className={`max-w-[300px] sm:max-w-[340px] ${i > 0 ? "-ml-10 mt-8" : ""}`}
+                      marker={photo.marker}
+                      // landscape shots (like group photos) get a wider card so faces stay readable
+                      sizes={photo.src.width > photo.src.height ? "(min-width: 768px) 460px, 90vw" : "(min-width: 768px) 340px, 80vw"}
+                      className={`${
+                        photo.src.width > photo.src.height ? "max-w-[460px]" : "max-w-[300px] sm:max-w-[340px]"
+                      } ${i > 0 ? "-ml-10 mt-8" : ""}`}
                     />
                   ))}
                 </div>
@@ -68,6 +78,17 @@ export default function OthersPage() {
             );
           })}
         </div>
+
+        <section className="mt-28 sm:mt-36">
+          <h2 className="flex items-center gap-3 text-2xl font-semibold uppercase tracking-wide text-brand-yellow sm:text-3xl">
+            <span aria-hidden className="h-2 w-2 bg-brand-yellow" />
+            Travel
+          </h2>
+          <p className="mt-4 max-w-sm text-cream/75">A few places I&apos;ve been.</p>
+          <div className="mt-10">
+            <TravelMap />
+          </div>
+        </section>
       </div>
     </main>
   );

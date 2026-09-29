@@ -4,6 +4,8 @@ import { useState } from "react";
 import Image from "next/image";
 import { motion } from "framer-motion";
 import { images } from "@/lib/images";
+import Polaroid from "./Polaroid";
+import headshot from "@/imgs/contact/headshot.jpg";
 
 const EMAIL = "sophie59595@gmail.com";
 
@@ -33,10 +35,22 @@ export default function Contact() {
       <motion.div
         initial={{ opacity: 0, y: 20 }}
         whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true, amount: 0.5 }}
+        viewport={{ once: true, amount: 0.3 }}
         transition={{ duration: 0.5 }}
         className="relative max-w-xl"
       >
+        {/* headshot: above the heading on smaller screens; on laptops and up it
+            pins just right of "Let's connect.", overlapping only the sun's edge */}
+        <Polaroid
+          src={headshot}
+          alt="Headshot of Sophie Shih"
+          label="say hi!"
+          rotate={3}
+          sizes="(min-width: 1024px) 192px, 176px"
+          tapeClassName="bg-white/70"
+          className="mb-12 max-w-[10rem] sm:max-w-[11rem] lg:absolute lg:left-full lg:top-0 lg:mb-0 lg:ml-4 lg:w-48 lg:max-w-none"
+        />
+
         <h2 className="text-4xl font-medium sm:text-6xl">Let&apos;s connect.</h2>
         <p className="mt-4 text-brand-blue/80 sm:text-lg">
           I&apos;m always happy to talk about research, technology,
