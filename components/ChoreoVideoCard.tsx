@@ -1,6 +1,6 @@
 "use client";
 
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { ChoreoVideo } from "@/data/dance";
 import PixelStar from "./PixelStar";
 
@@ -8,11 +8,30 @@ import PixelStar from "./PixelStar";
  * A local class video. Only the poster loads up front (preload="none");
  * the video itself downloads when the play button is pressed, and native
  * controls take over from there. Starting one video pauses any other.
+ * Videos marked `noExpand` play only in place: no fullscreen or
+ * picture-in-picture.
  */
 export default function ChoreoVideoCard({ video, number }: { video: ChoreoVideo; number: string }) {
   const ref = useRef<HTMLVideoElement>(null);
   const [started, setStarted] = useState(false);
   const portrait = video.height > video.width;
+
+  // the hidden fullscreen button covers most browsers; this also undoes
+  // fullscreen entered another way (double-click, or iOS Safari's player)
+  useEffect(() => {
+    const el = ref.current;
+    if (!video.noExpand || !el) return;
+    const onFullscreen = () => {
+      if (document.fullscreenElement === el) document.exitFullscreen();
+    };
+    const onIosFullscreen = () => (el as HTMLVideoElement & { webkitExitFullscreen?: () => void }).webkitExitFullscreen?.();
+    document.addEventListener("fullscreenchange", onFullscreen);
+    el.addEventListener("webkitbeginfullscreen", onIosFullscreen);
+    return () => {
+      document.removeEventListener("fullscreenchange", onFullscreen);
+      el.removeEventListener("webkitbeginfullscreen", onIosFullscreen);
+    };
+  }, [video.noExpand]);
 
   function play() {
     setStarted(true);
@@ -49,7 +68,8 @@ export default function ChoreoVideoCard({ video, number }: { video: ChoreoVideo;
           playsInline
           controls={started}
           // hide the Download option in the player menu and the right-click "Save video as"
-          controlsList="nodownload"
+          controlsList={video.noExpand ? "nodownload nofullscreen" : "nodownload"}
+          disablePictureInPicture={video.noExpand}
           onContextMenu={(e) => e.preventDefault()}
           onPlay={(e) => {
             setStarted(true);

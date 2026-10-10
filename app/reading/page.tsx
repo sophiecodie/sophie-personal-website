@@ -32,7 +32,7 @@ export default function ReadingPage() {
             <h1 className="mt-2 text-5xl font-bold uppercase leading-none tracking-wide sm:text-6xl">
               My Bookshelf
             </h1>
-            <p className="mt-3 text-lg text-brand-blue/70 sm:text-xl">some favorites</p>
+            <p className="mt-3 text-lg text-brand-blue/70 sm:text-xl">my all time favorites</p>
           </div>
           <Image
             src={images.shelf}

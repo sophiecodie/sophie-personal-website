@@ -5,6 +5,9 @@ import unbearableLightness from "@/imgs/covers/unbearable-lightness.jpg";
 import myBrilliantFriend from "@/imgs/covers/my-brilliant-friend.jpg";
 import identity from "@/imgs/covers/identity.jpg";
 import nightingale from "@/imgs/covers/nightingale.jpg";
+import pachinko from "@/imgs/covers/pachinko.jpg";
+import bluestEye from "@/imgs/covers/bluest-eye.jpg";
+import storyOfANewName from "@/imgs/covers/story-of-a-new-name.jpg";
 
 export type Book = {
   title: string;
@@ -26,4 +29,7 @@ export const books: Book[] = [
   { title: "My Brilliant Friend", author: "Elena Ferrante", cover: myBrilliantFriend },
   { title: "Identity", author: "Milan Kundera", cover: identity },
   { title: "The Nightingale", author: "Kristin Hannah", cover: nightingale },
+  { title: "Pachinko", author: "Min Jin Lee", cover: pachinko },
+  { title: "The Bluest Eye", author: "Toni Morrison", cover: bluestEye },
+  { title: "The Story of a New Name", author: "Elena Ferrante", cover: storyOfANewName },
 ];
