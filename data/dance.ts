@@ -11,7 +11,8 @@ export type Performance = {
 
 export type ChoreoVideo = {
   label: string;
-  choreographer: string;
+  choreographer?: string; // shown as "choreo by …"
+  credit?: string; // a custom credit line instead, when it isn't a single choreographer
   src: string; // served from /public
   poster: string;
   width: number;
@@ -45,6 +46,18 @@ export const stuyLegacy: {
 export const choreo: ChoreoVideo[] = [
   { label: "Class 1", choreographer: "Kara Lee", src: "/media/dance/class-1.mp4", poster: "/media/dance/class-1.jpg", width: 872, height: 1280 },
   { label: "Class 2", choreographer: "James Kho", src: "/media/dance/class-2.mp4", poster: "/media/dance/class-2.jpg", width: 1246, height: 1158 },
-  { label: "Class 3", choreographer: "Bo Belza", src: "/media/dance/class-3.mp4", poster: "/media/dance/class-3.jpg", width: 1280, height: 720, noExpand: true },
+  { label: "Class 3", choreographer: "Kara Lee", src: "/media/dance/class-3.mp4", poster: "/media/dance/class-3.jpg", width: 1280, height: 720 },
   { label: "Class 4", choreographer: "James Kho", src: "/media/dance/class-4.mp4", poster: "/media/dance/class-4.jpg", width: 1108, height: 1280, noExpand: true },
+];
+
+// StreetMed (Duke) performances, newest first
+export const streetMed: ChoreoVideo[] = [
+  {
+    label: "Family Weekend Showcase",
+    credit: "first piece choreographed by me & Luisa",
+    src: "/media/dance/streetmed.mp4",
+    poster: "/media/dance/streetmed.jpg",
+    width: 848,
+    height: 394,
+  },
 ];

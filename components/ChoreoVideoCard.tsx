@@ -11,10 +11,19 @@ import PixelStar from "./PixelStar";
  * Videos marked `noExpand` play only in place: no fullscreen or
  * picture-in-picture.
  */
-export default function ChoreoVideoCard({ video, number }: { video: ChoreoVideo; number: string }) {
+export default function ChoreoVideoCard({
+  video,
+  number,
+  wide = false,
+}: {
+  video: ChoreoVideo;
+  number?: string;
+  wide?: boolean; // a larger card, for full performances
+}) {
   const ref = useRef<HTMLVideoElement>(null);
   const [started, setStarted] = useState(false);
   const portrait = video.height > video.width;
+  const credit = video.credit ?? (video.choreographer && `choreo by ${video.choreographer}`);
 
   // the hidden fullscreen button covers most browsers; this also undoes
   // fullscreen entered another way (double-click, or iOS Safari's player)
@@ -39,17 +48,17 @@ export default function ChoreoVideoCard({ video, number }: { video: ChoreoVideo;
   }
 
   return (
-    <figure className={`group w-full ${portrait ? "max-w-[280px]" : "max-w-[420px]"}`}>
+    <figure className={`group w-full ${wide ? "max-w-2xl" : portrait ? "max-w-[280px]" : "max-w-[420px]"}`}>
       <figcaption className="mb-3">
         <span className="flex items-center gap-3">
-          <span className="text-sm text-brand-blue/60">{number}</span>
+          {number && <span className="text-sm text-brand-blue/60">{number}</span>}
           <span className="text-lg font-semibold uppercase tracking-wide">{video.label}</span>
           <PixelStar
             size="h-1 w-1"
             className="transition-transform duration-300 group-hover:rotate-45 group-hover:scale-125"
           />
         </span>
-        <span className="mt-1 block text-sm text-brand-blue/70">choreo by {video.choreographer}</span>
+        {credit && <span className="mt-1 block text-sm text-brand-blue/70">{credit}</span>}
       </figcaption>
 
       {/* lifts on hover only before playing, so the controls stay put while you use them */}
@@ -81,7 +90,7 @@ export default function ChoreoVideoCard({ video, number }: { video: ChoreoVideo;
           <button
             type="button"
             onClick={play}
-            aria-label={`Play ${video.label}, choreography by ${video.choreographer}`}
+            aria-label={`Play ${video.label}${credit ? `, ${credit}` : ""}`}
             className="absolute inset-0 flex items-end justify-start p-3"
           >
             <span className="flex items-center gap-2 border-2 border-navy bg-brand-yellow px-3 py-1 text-sm uppercase tracking-wider text-navy">

@@ -9,3 +9,5 @@ next-env.d.ts
 # original media drops — the site uses the converted copies in /imgs and /public/media
 /public/website content/
 /public/travels/
+/class.mov
+/62d56a49-bf81-4f02-8cd3-510d2e6037d9.MP4

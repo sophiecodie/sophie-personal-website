@@ -4,7 +4,7 @@ import ChoreoVideoCard from "@/components/ChoreoVideoCard";
 import PerformanceCard from "@/components/PerformanceCard";
 import PixelStar from "@/components/PixelStar";
 import Reveal from "@/components/Reveal";
-import { choreo, stuyLegacy } from "@/data/dance";
+import { choreo, streetMed, stuyLegacy } from "@/data/dance";
 import { images } from "@/lib/images";
 
 export const metadata = { title: "Dance — Sophie Shih" };
@@ -93,8 +93,16 @@ export default function DancePage() {
           </Stop>
 
           <Stop number="03" title="StreetMed" subtitle="Duke dance team" unfinished>
-            <p className="mt-8 flex items-center gap-4 text-2xl text-brand-blue/80 sm:text-3xl">
-              coming soon...
+            <div className="mt-10 space-y-12">
+              {streetMed.map((video) => (
+                <Reveal key={video.src}>
+                  <ChoreoVideoCard video={video} wide />
+                </Reveal>
+              ))}
+            </div>
+            {/* still an ongoing chapter, so the path keeps trailing off */}
+            <p className="mt-12 flex items-center gap-4 text-xl text-brand-blue/80 sm:text-2xl">
+              more coming soon...
               <PixelStar size="h-2 w-2" className="animate-bob" />
               <PixelStar size="h-1 w-1" color="bg-navy/60" className="-mt-6 animate-bob [animation-delay:0.6s]" />
             </p>
