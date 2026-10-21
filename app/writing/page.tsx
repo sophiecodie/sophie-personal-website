@@ -60,7 +60,7 @@ export default function WritingPage() {
             </p>
             {kinds.map((kind) => (
               <section key={kind}>
-                <h2 className="text-sm uppercase tracking-wider text-brand-yellow">
+                <h2 className="text-2xl font-semibold uppercase tracking-wide text-brand-yellow sm:text-3xl">
                   {WRITING_KIND_LABELS[kind]}
                 </h2>
                 <ul className="mt-4 divide-y divide-cream/15 border-t border-cream/15">
