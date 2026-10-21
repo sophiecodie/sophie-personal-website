@@ -107,28 +107,30 @@ export default function ProjectDetail({ project }: { project: Project }) {
           </Section>
         )}
 
-        <Section label="Screenshots">
-          <div className="grid gap-4 sm:grid-cols-2">
-            {d.screenshots.length > 0
-              ? d.screenshots.map((s) => (
-                  // eslint-disable-next-line @next/next/no-img-element
-                  <img
-                    key={s.src}
-                    src={s.src}
-                    alt={s.alt}
-                    className="w-full rounded-lg border border-cream/15"
-                  />
-                ))
-              : [0, 1].map((i) => (
-                  <div
-                    key={i}
-                    className="flex aspect-[16/10] items-center justify-center rounded-lg bg-brand-yellow/10 text-sm uppercase tracking-wider text-cream/40"
-                  >
-                    screenshot
-                  </div>
-                ))}
-          </div>
-        </Section>
+        {d.screenshots && (
+          <Section label="Screenshots">
+            <div className="grid gap-4 sm:grid-cols-2">
+              {d.screenshots.length > 0
+                ? d.screenshots.map((s) => (
+                    // eslint-disable-next-line @next/next/no-img-element
+                    <img
+                      key={s.src}
+                      src={s.src}
+                      alt={s.alt}
+                      className="w-full rounded-lg border border-cream/15"
+                    />
+                  ))
+                : [0, 1].map((i) => (
+                    <div
+                      key={i}
+                      className="flex aspect-[16/10] items-center justify-center rounded-lg bg-brand-yellow/10 text-sm uppercase tracking-wider text-cream/40"
+                    >
+                      screenshot
+                    </div>
+                  ))}
+            </div>
+          </Section>
+        )}
 
         {d.outcomes.length > 0 && (
           <Section label="Outcomes">

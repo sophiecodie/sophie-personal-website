@@ -26,7 +26,7 @@ export type ProjectDetail = {
   process: string[];
   processLabel?: string; // defaults to "Process"
   tech: string[];
-  screenshots: { src: string; alt: string }[]; // files in /public; empty = placeholder frames
+  screenshots?: { src: string; alt: string }[]; // files in /public; empty = placeholder frames, omitted = no section
   outcomes: string[];
   links: { label: string; href: string }[];
 };
@@ -54,7 +54,6 @@ export const projects: Project[] = [
       ],
       process: [], // TODO: how the project came together
       tech: ["Streamlit", "MINERVA knowledge graph", "AI agents", "Semantic search"],
-      screenshots: [], // TODO: e.g. { src: "/work/neurobiome-1.png", alt: "…" }
       outcomes: [
         "A comprehensive thesis on using AI to translate complex scientific findings into accessible educational tools",
       ],
@@ -96,7 +95,6 @@ export const projects: Project[] = [
         "The loop is programmatic, so it improves accuracy while minimizing the need for human input",
       ],
       tech: ["LLM agents", "Reflexion", "ICD-10 codes", "Flesch-Kincaid"],
-      screenshots: [], // TODO
       outcomes: [
         "Tested on 20 randomized radiology reports",
         "94.94% ICD-10 verification accuracy with the multi-agent approach, vs. 68.23% with zero-shot prompting",
