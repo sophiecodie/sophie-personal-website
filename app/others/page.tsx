@@ -38,12 +38,13 @@ export default function OthersPage() {
         <div className="mt-20 space-y-28 sm:mt-24 sm:space-y-36">
           {othersSections.map((section, s) => {
             const flip = s % 2 === 1;
+            const hasPhotos = section.photos.length > 0;
             return (
               <section
                 key={section.title}
-                className="grid items-center gap-12 md:grid-cols-[1fr_1.1fr] md:gap-16"
+                className={`grid items-center gap-12 md:gap-16 ${hasPhotos ? "md:grid-cols-[1fr_1.1fr]" : ""}`}
               >
-                <div className={flip ? "md:order-2" : ""}>
+                <div className={flip && hasPhotos ? "md:order-2" : ""}>
                   <h2 className="flex items-center gap-3 text-2xl font-semibold uppercase tracking-wide text-brand-yellow sm:text-3xl">
                     <span aria-hidden className="h-2 w-2 bg-brand-yellow" />
                     {section.title}
@@ -57,23 +58,25 @@ export default function OthersPage() {
                 </div>
 
                 {/* photos overlap slightly as more are added */}
-                <div className={`flex flex-wrap justify-center px-4 ${flip ? "md:order-1" : ""}`}>
-                  {section.photos.map((photo, i) => (
-                    <Polaroid
-                      key={i}
-                      src={photo.src}
-                      alt={photo.alt}
-                      label={section.title}
-                      rotate={TILTS[(s * 2 + i) % TILTS.length] * (flip ? -1 : 1)}
-                      marker={photo.marker}
-                      // landscape shots (like group photos) get a wider card so faces stay readable
-                      sizes={photo.src.width > photo.src.height ? "(min-width: 768px) 460px, 90vw" : "(min-width: 768px) 340px, 80vw"}
-                      className={`${
-                        photo.src.width > photo.src.height ? "max-w-[460px]" : "max-w-[300px] sm:max-w-[340px]"
-                      } ${i > 0 ? "-ml-10 mt-8" : ""}`}
-                    />
-                  ))}
-                </div>
+                {hasPhotos && (
+                  <div className={`flex flex-wrap justify-center px-4 ${flip ? "md:order-1" : ""}`}>
+                    {section.photos.map((photo, i) => (
+                      <Polaroid
+                        key={i}
+                        src={photo.src}
+                        alt={photo.alt}
+                        label={section.title}
+                        rotate={TILTS[(s * 2 + i) % TILTS.length] * (flip ? -1 : 1)}
+                        marker={photo.marker}
+                        // landscape shots (like group photos) get a wider card so faces stay readable
+                        sizes={photo.src.width > photo.src.height ? "(min-width: 768px) 460px, 90vw" : "(min-width: 768px) 340px, 80vw"}
+                        className={`${
+                          photo.src.width > photo.src.height ? "max-w-[460px]" : "max-w-[300px] sm:max-w-[340px]"
+                        } ${i > 0 ? "-ml-10 mt-8" : ""}`}
+                      />
+                    ))}
+                  </div>
+                )}
               </section>
             );
           })}

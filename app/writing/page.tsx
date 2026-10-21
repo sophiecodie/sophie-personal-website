@@ -46,6 +46,18 @@ export default function WritingPage() {
           </div>
         ) : (
           <div className="mt-16 space-y-12">
+            <p className="text-lg text-cream/70 sm:text-xl">
+              I write for the news section of{" "}
+              <a
+                href="https://www.dukechronicle.com"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-brand-yellow underline-offset-4 hover:underline"
+              >
+                The Duke Chronicle
+              </a>
+              .
+            </p>
             {kinds.map((kind) => (
               <section key={kind}>
                 <h2 className="text-sm uppercase tracking-wider text-brand-yellow">

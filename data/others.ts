@@ -39,4 +39,11 @@ export const othersSections: OthersSection[] = [
       },
     ],
   },
+  {
+    title: "The Coder School",
+    subtitle: "Code Coach",
+    blurb:
+      "As a code coach at The Coder School, I designed custom projects and taught students one on one.",
+    photos: [],
+  },
 ];
