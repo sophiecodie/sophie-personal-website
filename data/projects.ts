@@ -34,6 +34,31 @@ export type ProjectDetail = {
 export const projects: Project[] = [
   {
     number: "01",
+    slug: "new-york-census",
+    title: "The New York Census Line",
+    context: "Personal project · Data visualization",
+    summary:
+      "New York City told through Census data on a subway map: each line is a topic, each stop a neighborhood.",
+    image: images.newYorkCensus,
+    imageFit: "contain",
+    detail: {
+      descriptor: "Census data × subway map × five boroughs",
+      overview:
+        "Exploring New York through data and personal photos. Each subway line is a topic, and each stop is a neighborhood with real Census numbers behind it.",
+      built: [
+        "An interactive system map of the five boroughs where every stop opens that neighborhood's Census numbers",
+        "Three data lines: Housing (the Rent Line), Immigration (the International Express) and Economy (the Lexington Express)",
+        "A last stop, My New York, with my own photos of the city",
+        "A citywide at-a-glance panel: residents, share born abroad, median rent, rent burden, median income and subway commuting",
+      ],
+      process: [], // TODO: how the project came together
+      tech: ["Next.js", "ACS 2020–2024 5-year estimates", "NYC Open Data", "BLS CPI-U"],
+      outcomes: [],
+      links: [{ label: "new-york-census.sophieshih.com", href: "https://new-york-census.sophieshih.com/" }],
+    },
+  },
+  {
+    number: "02",
     slug: "neurobiome",
     title: "Neurobiome Navigator",
     context: "Mass General Brigham · Research",
@@ -67,7 +92,7 @@ export const projects: Project[] = [
     },
   },
   {
-    number: "02",
+    number: "03",
     slug: "agent00hl7",
     title: "Agent00HL7",
     context: "SIIM Hackathon · 2nd Place",
@@ -110,7 +135,7 @@ export const projects: Project[] = [
     },
   },
   {
-    number: "03",
+    number: "04",
     slug: "dreamteam",
     title: "Dream Team",
     context: "SIIM Hackathon · 2nd Place",

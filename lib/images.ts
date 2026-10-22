@@ -3,6 +3,7 @@
 import neurobiome from "@/imgs/neurobiome.png";
 import agent00hl7 from "@/imgs/Agent00HL7.png"; // poster, white background
 import dreamTeam from "@/imgs/drea team.png";
+import newYorkCensus from "@/imgs/new-york-census.png"; // site screenshot
 import weillCornell from "@/imgs/weill cornell.png";
 import shelf from "@/imgs/Reading page.png";
 import quill from "@/imgs/Writing page.png";
@@ -15,6 +16,7 @@ export const images = {
   neurobiome,
   agent00hl7,
   dreamTeam,
+  newYorkCensus,
   weillCornell,
   shelf,
   quill,
